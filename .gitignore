@@ -34,7 +34,3 @@ dist/
 .vite/
 *.local
 npm-debug.log*
-
-# ── Runtime / deploy artefact tự sinh trên server (không thuộc repo) ──
-docker-compose.override.yml
-shared/
