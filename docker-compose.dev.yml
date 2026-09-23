@@ -1,0 +1,18 @@
+# Chỉ dùng khi phát triển local (be/fe chạy trực tiếp bằng uvicorn/vite, không qua Docker).
+# Không dùng file này để deploy — bản deploy production là docker-compose.yml ở gốc.
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: demo_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: demo_user
+      POSTGRES_PASSWORD: demo_pass
+      POSTGRES_DB: demo_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

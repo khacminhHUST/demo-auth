@@ -1,0 +1,40 @@
+# ── Bí mật (BẮT BUỘC, ở gốc dự án) ──
+.env
+.env.*
+!.env.example
+!be/.env.example
+!fe/.env.example
+certs/*
+!certs/.gitkeep
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ── IDE / OS ──
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.coverage
+
+# ── Node / Vite ──
+node_modules/
+dist/
+.vite/
+*.local
+npm-debug.log*
+
+# ── Runtime / deploy artefact tự sinh trên server (không thuộc repo) ──
+docker-compose.override.yml
+shared/
