@@ -31,8 +31,8 @@ services:
     environment:
       ENV: production
       APP_NAME: Demo Auth API
-      CORS_ORIGIN: https://${DOMAIN}
-      FE_BASE_URL: https://${DOMAIN}
+      CORS_ORIGIN: https://${DOMAIN}:${HTTPS_PORT:-544}
+      FE_BASE_URL: https://${DOMAIN}:${HTTPS_PORT:-544}
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET}
       JWT_ALGORITHM: HS256
@@ -65,8 +65,7 @@ services:
       be:
         condition: service_healthy
     ports:
-      - "80:80"
-      - "443:443"
+      - "${HTTPS_PORT:-544}:443"
     volumes:
       - ${CERTS_DIR:-./certs}:/etc/nginx/certs:ro
     logging:
