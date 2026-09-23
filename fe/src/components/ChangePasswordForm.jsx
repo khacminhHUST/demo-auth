@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import * as authApi from '../api/authApi'
 import FormError from './FormError.jsx'
+import PasswordInput from './PasswordInput.jsx'
 
 export default function ChangePasswordForm({ onClose }) {
   const [form, setForm] = useState({ current_password: '', new_password: '' })
@@ -33,22 +34,22 @@ export default function ChangePasswordForm({ onClose }) {
       {message && <p className="auth-message">{message}</p>}
 
       <label>Mật khẩu hiện tại</label>
-      <input
-        type="password"
+      <PasswordInput
         name="current_password"
         value={form.current_password}
         onChange={handleChange}
         required
+        autoComplete="current-password"
       />
 
       <label>Mật khẩu mới</label>
-      <input
-        type="password"
+      <PasswordInput
         name="new_password"
         value={form.new_password}
         onChange={handleChange}
         required
         minLength={8}
+        autoComplete="new-password"
       />
 
       <div className="inline-card-actions">

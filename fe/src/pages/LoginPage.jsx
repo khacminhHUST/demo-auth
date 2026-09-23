@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import FormError from '../components/FormError.jsx'
+import PasswordInput from '../components/PasswordInput.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
 
 export default function LoginPage() {
@@ -58,7 +59,13 @@ export default function LoginPage() {
         <input type="email" name="email" value={form.email} onChange={handleChange} required />
 
         <label>Mật khẩu</label>
-        <input type="password" name="password" value={form.password} onChange={handleChange} required />
+        <PasswordInput
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          required
+          autoComplete="current-password"
+        />
 
         <div className="auth-links-row">
           <Link to="/verify-email">Chưa xác thực email?</Link>

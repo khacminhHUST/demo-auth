@@ -77,6 +77,36 @@ body {
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
 }
 
+.password-input-wrap {
+  position: relative;
+  display: flex;
+}
+
+.password-input-wrap input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  border-radius: 6px;
+}
+
+.password-toggle-btn:hover {
+  color: var(--color-primary);
+  background: #f3f4ff;
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
@@ -289,6 +319,10 @@ button {
   border-radius: 8px;
   padding: 10px 12px;
   font-size: 14px;
+}
+
+.inline-card .password-input-wrap input {
+  padding-right: 40px;
 }
 
 .inline-card-actions {

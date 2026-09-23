@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import * as authApi from '../api/authApi'
 import FormError from '../components/FormError.jsx'
+import PasswordInput from '../components/PasswordInput.jsx'
 
 export default function ResetPasswordPage() {
   const [searchParams] = useSearchParams()
@@ -46,12 +47,13 @@ export default function ResetPasswordPage() {
         <FormError message={error} />
 
         <label>Mật khẩu mới</label>
-        <input
-          type="password"
+        <PasswordInput
+          name="new_password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           required
           minLength={8}
+          autoComplete="new-password"
         />
 
         <button type="submit" disabled={isSubmitting}>

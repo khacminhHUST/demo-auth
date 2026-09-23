@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as authApi from '../api/authApi'
 import FormError from '../components/FormError.jsx'
+import PasswordInput from '../components/PasswordInput.jsx'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
@@ -40,13 +41,13 @@ export default function RegisterPage() {
         <input type="email" name="email" value={form.email} onChange={handleChange} required />
 
         <label>Mật khẩu</label>
-        <input
-          type="password"
+        <PasswordInput
           name="password"
           value={form.password}
           onChange={handleChange}
           required
           minLength={8}
+          autoComplete="new-password"
         />
 
         <button type="submit" disabled={isSubmitting}>
