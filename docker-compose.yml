@@ -68,7 +68,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./certs:/etc/nginx/certs:ro
+      - ${CERTS_DIR:-./certs}:/etc/nginx/certs:ro
     logging:
       driver: json-file
       options:
