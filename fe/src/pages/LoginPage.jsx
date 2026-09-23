@@ -9,6 +9,7 @@ export default function LoginPage() {
   const location = useLocation()
   const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
+  const [needsVerify, setNeedsVerify] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
@@ -16,12 +17,16 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+    setNeedsVerify(false)
     setIsSubmitting(true)
     try {
       await loginWithCredentials(form.email, form.password)
       navigate('/dashboard', { replace: true })
     } catch (err) {
       setError(err.response?.data?.detail || 'Đăng nhập thất bại')
+      if (err.response?.status === 403) {
+        setNeedsVerify(true)
+      }
     } finally {
       setIsSubmitting(false)
     }
@@ -41,6 +46,13 @@ export default function LoginPage() {
 
         {successMessage && <p className="auth-message">{successMessage}</p>}
         <FormError message={error} />
+        {needsVerify && (
+          <p className="auth-message">
+            <Link to="/verify-email" state={{ email: form.email }}>
+              Bấm vào đây để xác thực email
+            </Link>
+          </p>
+        )}
 
         <label>Email</label>
         <input type="email" name="email" value={form.email} onChange={handleChange} required />
@@ -49,6 +61,7 @@ export default function LoginPage() {
         <input type="password" name="password" value={form.password} onChange={handleChange} required />
 
         <div className="auth-links-row">
+          <Link to="/verify-email">Chưa xác thực email?</Link>
           <Link to="/forgot-password">Quên mật khẩu?</Link>
         </div>
 
